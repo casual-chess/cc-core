@@ -23,6 +23,13 @@ dependencies {
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+	// Lombok
+	val lombokVersion = "1.18.36"
+	compileOnly("org.projectlombok:lombok:${lombokVersion}")
+	annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+	testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
+	testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
 }
 
 tasks.withType<Test> {
