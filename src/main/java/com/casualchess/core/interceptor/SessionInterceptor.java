@@ -25,6 +25,7 @@ public class SessionInterceptor implements HandlerInterceptor {
         this.sessionStoreService = sessionStoreService;
     }
 
+    // TODO use JWT for sessionId
     @Override
     public boolean preHandle(
         @Nullable HttpServletRequest request,
@@ -33,7 +34,6 @@ public class SessionInterceptor implements HandlerInterceptor {
     ) {
         assert request != null;
         assert response != null;
-        // TODO JWT
         Optional<String> sessionId = Optional.empty();
         if (request.getCookies() != null) {
             sessionId = Arrays.stream(request.getCookies())
@@ -42,7 +42,6 @@ public class SessionInterceptor implements HandlerInterceptor {
                 .map(Cookie::getValue);
         }
         if (sessionId.isEmpty() || !sessionStoreService.containsSessionId(sessionId.get())) {
-            // create a new sessionId
             String newSessionId = UUID.randomUUID().toString();
             Cookie sessionCookie = new Cookie(COOKIE_NAME_SESSION_ID, newSessionId);
             sessionCookie.setSecure(true);

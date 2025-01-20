@@ -15,9 +15,9 @@ public class SessionStoreService {
         this.sessionStore = sessionStore;
     }
 
-    public void addSession(String sessionId, String userId) {
+    public void addSession(String sessionId, String userName) {
         assert sessionId != null;
-        sessionStore.addSession(sessionId, userId);
+        sessionStore.addSession(sessionId, userName);
     }
 
     public boolean containsSessionId(String sessionId) {
@@ -25,13 +25,13 @@ public class SessionStoreService {
         return sessionStore.containsSessionId(sessionId);
     }
 
-    public Optional<String> getUserId(String sessionId) {
+    public Optional<String> getUserName(String sessionId) {
         if (sessionId == null) return Optional.empty();
         return sessionStore.getUserId(sessionId);
     }
 
-    public boolean sessionForUserExists(String userId) {
-        return sessionStore.sessionForUserExists(userId);
+    public boolean sessionForUserExists(String userName) {
+        return sessionStore.sessionForUserExists(userName);
     }
 
 }
