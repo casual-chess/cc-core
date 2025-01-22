@@ -30,6 +30,9 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
 	testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
 	testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+
+	// PostgreSQL
+	implementation("org.postgresql:postgresql:42.7.5")
 }
 
 tasks.withType<Test> {
