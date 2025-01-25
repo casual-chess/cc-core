@@ -33,6 +33,9 @@ dependencies {
 
 	// PostgreSQL
 	implementation("org.postgresql:postgresql:42.7.5")
+
+	// JWT
+	implementation("io.jsonwebtoken:jjwt:0.12.6")
 }
 
 tasks.withType<Test> {

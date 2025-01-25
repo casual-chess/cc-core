@@ -3,6 +3,7 @@ package com.casualchess.core.entity;
 import com.casualchess.core.enums.GameStatusEnum;
 import jakarta.persistence.*;
 import lombok.Data;
+
 import java.util.UUID;
 
 @Data

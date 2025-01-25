@@ -3,6 +3,7 @@ package com.casualchess.core.entity;
 import com.casualchess.core.enums.PlayerEnum;
 import jakarta.persistence.*;
 import lombok.Data;
+
 import java.time.LocalDateTime;
 
 @Data
