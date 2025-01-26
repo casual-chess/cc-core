@@ -4,9 +4,11 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 
+@Component
 public class JwtCore {
     // TODO this should be a secret
     private final SecretKey key = Keys.hmacShaKeyFor("casual-chess-core-key-that-must-be-longer".getBytes());
