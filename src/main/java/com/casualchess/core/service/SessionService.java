@@ -18,14 +18,11 @@ import java.util.UUID;
 @Service
 public class SessionService {
 
-    private final SessionRepository sessionRepository;
-    private final JwtCore jwtCore;
+    @Autowired
+    private SessionRepository sessionRepository;
 
     @Autowired
-    public SessionService(SessionRepository sessionRepository, JwtCore jwtCore) {
-        this.sessionRepository = sessionRepository;
-        this.jwtCore = jwtCore;
-    }
+    private JwtCore jwtCore;
 
     public String createSession(long userId) {
         SessionEntity session = sessionRepository.save(new SessionEntity(userId));

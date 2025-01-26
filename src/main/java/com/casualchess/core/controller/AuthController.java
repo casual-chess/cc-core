@@ -25,14 +25,10 @@ public class AuthController {
     private static final String USER_NOT_LOGGED_IN = "Not logged-in";
     private static final String USER_DOES_NOT_EXIST = "User does not exist";
 
-    private final SessionService sessionService;
-    private final UserService userService;
-
     @Autowired
-    public AuthController(SessionService sessionService, UserService userService) {
-        this.sessionService = sessionService;
-        this.userService = userService;
-    }
+    private SessionService sessionService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping
     public ResponseEntity<ApiResponse<UserDto>> getUser(

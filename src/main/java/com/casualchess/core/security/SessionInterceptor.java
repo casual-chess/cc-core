@@ -4,6 +4,7 @@ import com.casualchess.core.service.SessionService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -16,11 +17,8 @@ import static com.casualchess.core.CoreAppConstants.COOKIE_NAME_SESSION_TOKEN;
 @Component
 public class SessionInterceptor implements HandlerInterceptor {
 
-    private final SessionService sessionService;
-
-    public SessionInterceptor(SessionService sessionService) {
-        this.sessionService = sessionService;
-    }
+    @Autowired
+    private SessionService sessionService;
 
     @Override
     public boolean preHandle(
