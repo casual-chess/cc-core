@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static com.casualchess.core.CoreAppConstants.COOKIE_NAME_SESSION_TOKEN;
+import static com.casualchess.core.CoreAppConstants.*;
 
 
 /// TODO:
@@ -21,9 +21,6 @@ import static com.casualchess.core.CoreAppConstants.COOKIE_NAME_SESSION_TOKEN;
 @RestController
 @RequestMapping({"/api/v1/auth", "/api/v1/auth/"})
 public class AuthController {
-    private static final String USER_ALREADY_LOGGED_IN = "Already logged-in";
-    private static final String USER_NOT_LOGGED_IN = "Not logged-in";
-    private static final String USER_DOES_NOT_EXIST = "User does not exist";
 
     @Autowired
     private SessionService sessionService;
@@ -43,7 +40,7 @@ public class AuthController {
         UserEntity user = userService.findById(userId).orElseThrow(() ->
             new ControllerException(HttpStatus.UNAUTHORIZED, USER_DOES_NOT_EXIST)
         );
-        return ResponseEntity.ok(ApiResponse.ok(new UserDto(user.getUsername())));
+        return ApiResponse.ok(new UserDto(user.getUsername()));
     }
 
     @GetMapping("/register/{username}")
@@ -65,7 +62,7 @@ public class AuthController {
         UserEntity user = userService.addUser(username);
         String newSessionToken = sessionService.createSession(user.getUserId());
         response.addCookie(createSessionCookie(newSessionToken, false));
-        return ResponseEntity.ok(ApiResponse.ok(new UserDto(user.getUsername())));
+        return ApiResponse.ok(new UserDto(user.getUsername()));
     }
 
     @GetMapping("/login/{username}")
@@ -88,7 +85,7 @@ public class AuthController {
         );
         String newSessionToken = sessionService.createSession(user.getUserId());
         response.addCookie(createSessionCookie(newSessionToken, false));
-        return ResponseEntity.ok(ApiResponse.ok(new UserDto(user.getUsername())));
+        return ApiResponse.ok(new UserDto(user.getUsername()));
     }
 
     @GetMapping("/logout")
@@ -101,7 +98,7 @@ public class AuthController {
         );
         sessionService.deleteSession(sessionToken);
         response.addCookie(createSessionCookie(sessionToken, true));
-        return ResponseEntity.ok(ApiResponse.ok(true));
+        return ApiResponse.ok(true);
     }
 
 
